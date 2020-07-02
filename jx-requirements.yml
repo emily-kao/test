@@ -15,7 +15,7 @@ cluster:
   gitName: github
   gitServer: https://github.com
   namespace: jx
-  project:  ""
+  project:  "todo"
   provider: gke
   registry: gcr.io
   zone: europe-west1-b
