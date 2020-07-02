@@ -3,6 +3,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: "jenkins-x-devpod-config"
+  namespace: jx
+  labels:
+    gitops.jenkins-x.io/pipeline: 'environment'
 data:
   versions: |-
     theia: 0.3.14

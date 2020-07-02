@@ -16,6 +16,9 @@ apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
   name: tekton-pipelines
+  namespace: jx
+  labels:
+    gitops.jenkins-x.io/pipeline: 'environment'
 spec:
   privileged: false
   allowPrivilegeEscalation: false
