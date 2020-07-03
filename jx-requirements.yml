@@ -23,6 +23,12 @@ environments:
 - key: dev
   owner: ""
   repository: ""
+- key: staging
+  owner: ""
+  repository: ""
+- key: production
+  owner: ""
+  repository: ""
 gitops: true
 ingress:
   domain: ""
