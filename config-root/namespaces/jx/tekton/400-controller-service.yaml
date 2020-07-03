@@ -18,7 +18,9 @@ kind: Service
 metadata:
   labels:
     app: tekton-pipelines-controller
+    gitops.jenkins-x.io/pipeline: 'environment'
   name: tekton-pipelines-controller
+  namespace: jx
 spec:
   ports:
   - name: metrics
