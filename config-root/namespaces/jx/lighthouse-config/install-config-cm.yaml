@@ -1,8 +1,9 @@
-# Source: lighthouse/templates/gc-jobs-sa.yaml
-kind: ServiceAccount
 apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: lighthouse-gc-jobs
+  name: jx-install-config
   namespace: jx
   labels:
     gitops.jenkins-x.io/pipeline: 'environment'
+data:
+  kubeProvider: gke

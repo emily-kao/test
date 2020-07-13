@@ -8,11 +8,12 @@ metadata:
     helm.sh/chart: kubernetes-external-secrets-4.0.0
     app.kubernetes.io/instance: kubernetes-external-secrets
     app.kubernetes.io/managed-by: Helm
+    gitops.jenkins-x.io/pipeline: 'environment'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: kubernetes-external-secrets
 subjects:
-  - name: kubernetes-external-secrets
-    namespace: "vault-infra"
-    kind: ServiceAccount
+- name: kubernetes-external-secrets
+  namespace: "vault-infra"
+  kind: ServiceAccount
