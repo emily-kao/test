@@ -3,3 +3,6 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: lighthouse-webhooks
+  namespace: jx
+  labels:
+    gitops.jenkins-x.io/pipeline: 'environment'

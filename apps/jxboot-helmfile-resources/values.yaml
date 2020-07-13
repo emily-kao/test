@@ -2,3 +2,4 @@ secrets:
   pipelineUser:
     username: "jenkins-x-labs-bot"
     email: "jenkins-x@googlegroups.com"
+    token: "todo"
