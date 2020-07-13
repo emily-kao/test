@@ -17,6 +17,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-defaults
+  namespace: jx
+  labels:
+    gitops.jenkins-x.io/pipeline: 'environment'
 data:
   _example: |
     ################################
