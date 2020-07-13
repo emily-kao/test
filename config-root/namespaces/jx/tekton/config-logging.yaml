@@ -17,6 +17,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-logging
+  namespace: jx
+  labels:
+    gitops.jenkins-x.io/pipeline: 'environment'
 data:
   # Common configuration for all knative codebase
   zap-logger-config: |
@@ -44,7 +47,6 @@ data:
         "callerEncoder": ""
       }
     }
-
   # Log level overrides
   loglevel.controller: "info"
   loglevel.webhook: "info"

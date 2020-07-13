@@ -8,3 +8,5 @@ metadata:
     app.kubernetes.io/name: vault-operator
     app.kubernetes.io/instance: vault-operator
     app.kubernetes.io/managed-by: Helm
+    gitops.jenkins-x.io/pipeline: 'environment'
+  namespace: vault-infra
