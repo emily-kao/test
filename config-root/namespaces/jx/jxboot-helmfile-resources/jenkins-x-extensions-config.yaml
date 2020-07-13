@@ -3,10 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: "jenkins-x-extensions"
-  namespace: jx
-  labels:
-    gitops.jenkins-x.io/pipeline: 'environment'
-data:
+data:  
   knownRepositories: |
     repositories:
     - chart: {}
