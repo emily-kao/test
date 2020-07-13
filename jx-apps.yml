@@ -1,9 +1,9 @@
 apps:
-- name: jenkins-x/tekton
 - name: external-secrets/kubernetes-external-secrets
 - name: jx-labs/jenkins-x-crds
 - name: stable/nginx-ingress
 - name: jenkins-x/jxboot-helmfile-resources
+- name: jenkins-x/tekton
 - name: jenkins-x/lighthouse
 - name: jenkins-x/nexus
 - name: jenkins-x/chartmuseum

@@ -5,6 +5,8 @@ metadata:
   name: "jenkins-x-pod-template-maven"
   labels:
     jenkins.io/kind: podTemplate
+    gitops.jenkins-x.io/pipeline: 'environment'
+  namespace: jx
 data:
   pod: |-
     apiVersion: v1
