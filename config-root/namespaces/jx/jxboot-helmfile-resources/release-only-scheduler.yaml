@@ -4,9 +4,6 @@ kind: Scheduler
 metadata:
   creationTimestamp: null
   name: release-only
-  namespace: jx
-  labels:
-    gitops.jenkins-x.io/pipeline: 'environment'
 spec:
   approve:
     issueRequired: false
@@ -24,7 +21,7 @@ spec:
       skipUnknownContexts: false
     prStatusBaseUrl: ""
     squashLabel: ""
-    targetUrl: http://deck-jx.
+    targetUrl: http://deck.cluster.local
   plugins:
     entries:
     - approve
