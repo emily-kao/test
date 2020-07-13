@@ -15,14 +15,12 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: tekton-pipelines-jx
-  labels:
-    gitops.jenkins-x.io/pipeline: 'environment'
+  name:  tekton-pipelines-jx
 subjects:
-- kind: ServiceAccount
-  name: tekton-pipelines
-  namespace: jx
+  - kind: ServiceAccount
+    name: tekton-pipelines
+    namespace: jx
 roleRef:
   kind: ClusterRole
-  name: tekton-pipelines
+  name:  tekton-pipelines
   apiGroup: rbac.authorization.k8s.io
