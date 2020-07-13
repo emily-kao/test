@@ -3,13 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins-x-chartmuseum
-  annotations:
-    {}
+  annotations: {wave.pusher.com/update-on-config-change: 'true'}
   labels:
     app: chartmuseum
     chart: chartmuseum-1.1.7
     heritage: "Helm"
     release: "chartmuseum"
+    gitops.jenkins-x.io/pipeline: 'environment'
+  namespace: jx
 spec:
   replicas: 1
   strategy:
@@ -23,8 +24,7 @@ spec:
   template:
     metadata:
       name: jenkins-x-chartmuseum
-      annotations:
-        {}
+      annotations: {}
       labels:
         app: chartmuseum
         release: "chartmuseum"
