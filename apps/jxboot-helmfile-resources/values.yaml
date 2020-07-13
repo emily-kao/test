@@ -1,3 +1,12 @@
+jxRequirements:
+  ingress:
+    domain: cluster.local
+    namespaceSubDomain: "."
+    tls:
+      enabled: true
+
+sourceRepositoriesEnvKey: true
+
 secrets:
   pipelineUser:
     username: "jenkins-x-labs-bot"
