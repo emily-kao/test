@@ -7,10 +7,6 @@ metadata:
     draft: draft-app
     chart: "lighthouse-0.0.633"
     app: lighthouse-keeper
-    gitops.jenkins-x.io/pipeline: 'environment'
-  namespace: jx
-  annotations:
-    wave.pusher.com/update-on-config-change: 'true'
 spec:
   replicas: 1
   strategy:
@@ -36,12 +32,13 @@ spec:
       - name: lighthouse-keeper
         image: gcr.io/jenkinsxio/lighthouse-keeper:0.0.633
         imagePullPolicy: IfNotPresent
+
         args:
-        - --dry-run=false
+          - --dry-run=false
         ports:
-        - name: http
-          containerPort: 8888
-          protocol: TCP
+          - name: http
+            containerPort: 8888
+            protocol: TCP
         livenessProbe:
           httpGet:
             path: /
