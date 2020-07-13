@@ -5,7 +5,6 @@ metadata:
   name: vault-operator
   labels:
     helm.sh/chart: vault-operator-1.3.0
-    gitops.jenkins-x.io/pipeline: 'environment'
 rules:
 - apiGroups:
   - vault.banzaicloud.com
