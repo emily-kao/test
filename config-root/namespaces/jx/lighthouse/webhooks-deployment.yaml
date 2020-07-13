@@ -7,8 +7,11 @@ metadata:
     draft: draft-app
     chart: "lighthouse-0.0.633"
     app: lighthouse-webhooks
+    gitops.jenkins-x.io/pipeline: 'environment'
   annotations:
     checksum/config: e5ef80491082e91444b9aa60e2df6411f4987b6ed3d5d1685fca23ed6eb8c64d
+    wave.pusher.com/update-on-config-change: 'true'
+  namespace: jx
 spec:
   replicas: 2
   selector:
@@ -27,28 +30,28 @@ spec:
         image: gcr.io/jenkinsxio/lighthouse-webhooks:0.0.633
         imagePullPolicy: IfNotPresent
         env:
-          - name: "GIT_KIND"
-            value: "github"
-          - name: "GIT_SERVER"
-            value: "https://github.com"
-          - name: "GIT_USER"
-            value: todo
-          - name: "GIT_TOKEN"
-            valueFrom:
-              secretKeyRef:
-                name: lighthouse-oauth-token
-                key: oauth
-          - name: "HMAC_TOKEN"
-            valueFrom:
-              secretKeyRef:
-                name: "lighthouse-hmac-token"
-                key: hmac
-          - name: "JX_LOG_FORMAT"
-            value: "json"
-          - name: "LOGRUS_FORMAT"
-            value: "json"
-          - name: JX_DEFAULT_IMAGE
-            value: "gcr.io/jenkinsxio-labs-private/jxl:0.0.208"
+        - name: "GIT_KIND"
+          value: "github"
+        - name: "GIT_SERVER"
+          value: "https://github.com"
+        - name: "GIT_USER"
+          value: todo
+        - name: "GIT_TOKEN"
+          valueFrom:
+            secretKeyRef:
+              name: lighthouse-oauth-token
+              key: oauth
+        - name: "HMAC_TOKEN"
+          valueFrom:
+            secretKeyRef:
+              name: "lighthouse-hmac-token"
+              key: hmac
+        - name: "JX_LOG_FORMAT"
+          value: "json"
+        - name: "LOGRUS_FORMAT"
+          value: "json"
+        - name: JX_DEFAULT_IMAGE
+          value: "gcr.io/jenkinsxio-labs-private/jxl:0.0.208"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -67,10 +70,10 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
-            limits:
-              cpu: 100m
-              memory: 256Mi
-            requests:
-              cpu: 80m
-              memory: 128Mi
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 80m
+            memory: 128Mi
       terminationGracePeriodSeconds: 180
