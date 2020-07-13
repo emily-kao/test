@@ -36,7 +36,7 @@ pre-build:
 
 .PHONY: post-build
 post-build:
-	jx gitops repository --dir $(OUTPUT_DIR)/namespaces/jx/jxboot-helmfile-resources
+	jx gitops repository --jx-requirements
 	jx gitops ingress
 	jx gitops label --dir $(OUTPUT_DIR) gitops.jenkins-x.io/pipeline=environment
 	jx gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment wave.pusher.com/update-on-config-change=true
