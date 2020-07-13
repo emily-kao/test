@@ -16,6 +16,7 @@ init:
 
 .PHONY: fetch
 fetch: init
+	jx gitops repository --jx-requirements
 	jx gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
 	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
@@ -36,7 +37,6 @@ pre-build:
 
 .PHONY: post-build
 post-build:
-	jx gitops repository --jx-requirements
 	jx gitops ingress
 	jx gitops label --dir $(OUTPUT_DIR) gitops.jenkins-x.io/pipeline=environment
 	jx gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment wave.pusher.com/update-on-config-change=true
