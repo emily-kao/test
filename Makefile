@@ -16,8 +16,8 @@ init:
 
 .PHONY: fetch
 fetch: init
-	jx-gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
-	jx-gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
+	jx gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
+	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 .PHONY: build
 # uncomment this line to enable kustomize
@@ -33,13 +33,13 @@ build-nokustomise: copy-resources post-build
 
 .PHONY: pre-build
 pre-build:
-	jx-gitops repository --dir ./build/base
+	jx gitops repository --dir ./build/base
 
 .PHONY: post-build
 post-build:
-	jx-gitops ingress
-	jx-gitops label --dir $(OUTPUT_DIR) gitops.jenkins-x.io/pipeline=environment
-	jx-gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment wave.pusher.com/update-on-config-change=true
+	jx gitops ingress
+	jx gitops label --dir $(OUTPUT_DIR) gitops.jenkins-x.io/pipeline=environment
+	jx gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment wave.pusher.com/update-on-config-change=true
 
 
 .PHONY: kustomize
