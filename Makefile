@@ -54,6 +54,12 @@ copy-resources: pre-build
 .PHONY: lint
 lint:
 
+.PHONY: verify
+verify:
+	jx verify env
+	jx verify ingress
+	jx verify webhooks --verbose --warn-on-fail
+
 .PHONY: apply
 apply:
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
