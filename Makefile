@@ -41,6 +41,8 @@ post-build:
 	jx gitops label --dir $(OUTPUT_DIR) gitops.jenkins-x.io/pipeline=environment
 	jx gitops annotate --dir  $(OUTPUT_DIR)/namespaces --kind Deployment wave.pusher.com/update-on-config-change=true
 
+	# lets force a rolling upgrade of lighthouse pods whenever we update the lighthouse config...
+	jx gitops hash -s config-root/namespaces/jx/lighthouse-config/config-cm.yaml -s config-root/namespaces/jx/lighthouse-config/plugins-cm.yaml -d config-root/namespaces/jx/lighthouse
 
 .PHONY: kustomize
 kustomize: pre-build
