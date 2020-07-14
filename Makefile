@@ -16,8 +16,7 @@ init:
 
 .PHONY: fetch
 fetch: init
-	jx gitops repository --jx-requirements
-	jx gitops repository --dir $(OUTPUT_DIR)/namespaces
+	jx gitops repository --source-dir $(OUTPUT_DIR)/namespaces
 	jx gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
 	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
