@@ -1,3 +1,1 @@
 buildPack: environment-gitops
-buildPackGitRef: kpt
-buildPackGitURL: https://github.com/jstrachan/jxr-packs-kubernetes.git
