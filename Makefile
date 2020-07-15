@@ -69,7 +69,7 @@ apply:
 
 .PHONY: commit
 commit:
-	git add $(OUTPUT_DIR) *.yml
+	git add $(OUTPUT_DIR) src *.yml
 	git commit -m "chore: regenerated" --allow-empty
 	git push
 
