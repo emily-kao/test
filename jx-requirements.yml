@@ -30,6 +30,7 @@ environments:
   owner: ""
   repository: ""
 gitops: true
+helmfile: true
 ingress:
   domain: ""
   externalDNS: false
