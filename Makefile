@@ -70,7 +70,7 @@ apply:
 .PHONY: commit
 commit:
 	git add $(OUTPUT_DIR) src *.yml
-	git commit -m "chore: regenerated" --allow-empty
+	git commit -m "chore: regenerated"
 
 .PHONY: all
 all: clean fetch build lint
