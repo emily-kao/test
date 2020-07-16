@@ -70,7 +70,8 @@ apply:
 .PHONY: commit
 commit:
 	git add $(OUTPUT_DIR) src *.yml
-	git commit -m "chore: regenerated"
+	# lets ignore commit errors in case there's no changes and to stop pipelines failing
+	-git commit -m "chore: regenerated"
 
 .PHONY: all
 all: clean fetch build lint
