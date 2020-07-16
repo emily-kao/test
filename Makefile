@@ -71,7 +71,6 @@ apply:
 commit:
 	git add $(OUTPUT_DIR) src *.yml
 	git commit -m "chore: regenerated" --allow-empty
-	jx gitops pr push
 
 .PHONY: all
 all: clean fetch build lint
@@ -79,6 +78,7 @@ all: clean fetch build lint
 
 .PHONY: pr
 pr: all commit
+	jx gitops pr push
 
 .PHONY: release
 release: lint
