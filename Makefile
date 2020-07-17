@@ -78,8 +78,6 @@ verify: verify-ingress
 
 .PHONY: verify-ignore
 verify-ignore: verify-ingress-ignore
-	-jx verify env
-	-jx verify webhooks --verbose --warn-on-fail
 
 
 .PHONY: git-setup
@@ -97,6 +95,9 @@ regen-check:
 .PHONY: apply
 apply: regen-check
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	jx verify env
+	jx verify webhooks --verbose --warn-on-fail
+
 
 .PHONY: commit
 commit:
