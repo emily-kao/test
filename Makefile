@@ -57,10 +57,14 @@ copy-resources: pre-build
 .PHONY: lint
 lint:
 
-.PHONY: verify
-verify:
-	jx verify env
+.PHONY: verify-ingress
+verify-ingress:
 	jx verify ingress
+
+
+.PHONY: verify
+verify: verify-ingress
+	jx verify env
 	jx verify webhooks --verbose --warn-on-fail
 
 
@@ -70,7 +74,10 @@ git-setup:
 
 .PHONY: regen-check
 regen-check:
-	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup all commit push
+	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup all verify-ingress commit push
+
+	# lets run this twice to ensure that ingress is setup after applying nginx if not using a custom domain yet
+	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup verify-ingress all verify commit push
 
 .PHONY: apply
 apply: regen-check
