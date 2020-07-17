@@ -83,6 +83,7 @@ verify-ignore: verify-ingress-ignore
 .PHONY: git-setup
 git-setup:
 	jx gitops git setup
+	git pull
 
 .PHONY: regen-check
 regen-check:
