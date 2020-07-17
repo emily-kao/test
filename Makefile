@@ -59,11 +59,11 @@ lint:
 
 .PHONY: verify-ingress
 verify-ingress:
-	jx verify ingress
+	jx verify ingress -b
 
 .PHONY: verify-ingress-ignore
 verify-ingress-ignore:
-	-jx verify ingress
+	-jx verify ingress -b
 
 .PHONY: verify-install
 verify-install:
