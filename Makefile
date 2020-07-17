@@ -61,6 +61,9 @@ lint:
 verify-ingress:
 	jx verify ingress
 
+.PHONY: verify-install
+verify-install:
+	jx verify install
 
 .PHONY: verify
 verify: verify-ingress
