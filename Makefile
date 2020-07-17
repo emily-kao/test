@@ -63,7 +63,6 @@ verify-ingress:
 
 .PHONY: verify-ingress-ignore
 verify-ingress-ignore:
-	jx ns jx
 	-jx verify ingress -b
 
 .PHONY: verify-install
@@ -98,9 +97,8 @@ apply: regen-check
 	# TODO has a hack lets do this twice as the first time fails due to CRDs
 	-kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
-	jx ns jx
 	-jx verify env
-	jx verify webhooks --verbose --warn-on-fail
+	-jx verify webhooks --verbose --warn-on-fail
 
 
 .PHONY: commit
