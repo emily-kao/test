@@ -97,7 +97,7 @@ regen-check:
 apply: regen-check
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	jx ns jx
-	jx verify env
+	-jx verify env
 	jx verify webhooks --verbose --warn-on-fail
 
 
