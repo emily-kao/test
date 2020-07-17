@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: myapps
-    gitops.jenkins-x.io/pipeline: 'environment'
-  name: myapps

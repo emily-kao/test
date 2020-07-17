@@ -63,8 +63,17 @@ verify:
 	jx verify ingress
 	jx verify webhooks --verbose --warn-on-fail
 
+
+.PHONY: git-setup
+git-setup:
+	jx gitops git setup
+
+.PHONY: regen-check
+regen-check:
+	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup all commit push
+
 .PHONY: apply
-apply:
+apply: regen-check
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 
 .PHONY: commit
@@ -78,8 +87,15 @@ all: clean fetch build lint
 
 
 .PHONY: pr
-pr: all commit
+pr: all commit push-pr-branch
+
+.PHONY: push-pr-branch
+push-pr-branch:
 	jx gitops pr push
+
+.PHONY: push
+push:
+	git push
 
 .PHONY: release
 release: lint
