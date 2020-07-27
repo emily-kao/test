@@ -102,8 +102,9 @@ apply: regen-check
 .PHONY: double-apply
 double-: regen-check
 	# TODO has a hack lets do this twice as the first time fails due to CRDs
-	-kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
-	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	# validate=false is there for cert manager to not fail on admission webhooks
+	-kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 
 
 .PHONY: commit
