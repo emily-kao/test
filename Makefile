@@ -94,7 +94,8 @@ regen-check:
 
 .PHONY: apply
 apply: regen-check
-	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	# validate=false is there for cert manager to not fail on admission webhooks
+	kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	-jx verify env
 	-jx verify webhooks --verbose --warn-on-fail
 
