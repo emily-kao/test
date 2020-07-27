@@ -20,6 +20,9 @@ fetch: init
 	jx gitops jx-apps template --template-values src/fake-secrets.yaml -o $(OUTPUT_DIR)/namespaces
 	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
+	# disable cert manager validation of webhooks due to cert issues
+	jx gitops label --kind Namespace cert-manager.io/disable-validation=true
+
 .PHONY: build
 # uncomment this line to enable kustomize
 #build: build-kustomise
@@ -94,17 +97,15 @@ regen-check:
 
 .PHONY: apply
 apply: regen-check
-	# validate=false is there for cert manager to not fail on admission webhooks
-	kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	-jx verify env
 	-jx verify webhooks --verbose --warn-on-fail
 
 .PHONY: double-apply
 double-: regen-check
 	# TODO has a hack lets do this twice as the first time fails due to CRDs
-	# validate=false is there for cert manager to not fail on admission webhooks
-	-kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
-	kubectl apply --validate=false --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	-kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
+	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 
 
 .PHONY: commit
