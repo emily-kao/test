@@ -21,7 +21,7 @@ fetch: init
 	jx gitops namespace --dir-mode --dir $(OUTPUT_DIR)/namespaces
 
 	# disable cert manager validation of webhooks due to cert issues
-	jx gitops label --kind Namespace cert-manager.io/disable-validation=true
+	#jx gitops label --kind Namespace cert-manager.io/disable-validation=true
 
 .PHONY: build
 # uncomment this line to enable kustomize
