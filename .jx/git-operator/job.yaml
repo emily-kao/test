@@ -5,6 +5,10 @@ spec:
   completions: 1
   parallelism: 1
   template:
+    metadata:
+      labels:
+        app: jx-boot
+        jenkins-x.io/kind: jx-git-operator
     spec:
       initContainers:
       - args:
