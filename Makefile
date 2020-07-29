@@ -90,7 +90,7 @@ git-setup:
 
 .PHONY: regen-check
 regen-check:
-	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup all double-apply verify-ingress-ignore commit push
+	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup resolve-metadata all double-apply verify-ingress-ignore commit push
 
 	# lets run this twice to ensure that ingress is setup after applying nginx if not using a custom domain yet
 	jx gitops condition --last-commit-msg-prefix '!Merge pull request' -- make git-setup verify-ingress-ignore all verify-ignore commit push
@@ -102,11 +102,14 @@ apply: regen-check
 	-jx verify webhooks --verbose --warn-on-fail
 
 .PHONY: double-apply
-double-: regen-check
+double-apply: regen-check
 	# TODO has a hack lets do this twice as the first time fails due to CRDs
 	-kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 
+.PHONY: resolve-metadata
+resolve-metadata:
+	jx gitops requirements resolve
 
 .PHONY: commit
 commit:
