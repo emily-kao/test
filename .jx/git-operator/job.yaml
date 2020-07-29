@@ -1,5 +1,9 @@
 apiVersion: batch/v1
 kind: Job
+metadata:
+  labels:
+    app: jx-boot
+    jenkins-x.io/kind: jx-git-operator
 spec:
   backoffLimit: 4
   completions: 1
