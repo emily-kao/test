@@ -102,7 +102,7 @@ apply: regen-check
 	-jx verify webhooks --verbose --warn-on-fail
 
 .PHONY: double-apply
-double-apply: regen-check
+double-apply: 
 	# TODO has a hack lets do this twice as the first time fails due to CRDs
 	-kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
 	kubectl apply --prune -l=gitops.jenkins-x.io/pipeline=environment -R -f $(OUTPUT_DIR)
