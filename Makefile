@@ -113,7 +113,7 @@ resolve-metadata:
 
 .PHONY: commit
 commit:
-	git add *
+	-git add *
 	-git status
 	# lets ignore commit errors in case there's no changes and to stop pipelines failing
 	-git commit -m "chore: regenerated"
